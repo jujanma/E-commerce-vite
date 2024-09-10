@@ -1,6 +1,10 @@
 import { NavLink } from "react-router-dom";
+import { FaCartShopping } from "react-icons/fa6";
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../Context";
 
 const Navbar = () => {
+  const { count } = useContext(ShoppingCartContext);
   const activeStyle = "underline underline-offset-4";
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
@@ -34,18 +38,10 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink
-            to="/furnitures"
+            to="/Jewelery"
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Furnitures
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/toys"
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Toys
+            Jewelery
           </NavLink>
         </li>
         <li>
@@ -83,7 +79,10 @@ const Navbar = () => {
             Sign In
           </NavLink>
         </li>
-        <li>Carrito</li>
+        <li className=" grid grid-cols-2 gap-1">
+          <FaCartShopping className="h-full w-full " />
+          {count}
+        </li>
       </ul>
     </nav>
   );
